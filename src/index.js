@@ -9,7 +9,7 @@ const updatePropIf = (prop) => (obj, value) => {
 const updateNext = updatePropIf('next')
 const updatePrev = updatePropIf('prev')
 
-export class DLL {
+export default class DLL {
   nodes = []
 
   get prev() {
@@ -51,14 +51,22 @@ export class DLL {
     }
   }
 
+  setIfPresent = (index, node) => {
+    if (this.nodes[index]) {
+      this.nodes[index] = node
+    }
+  }
+
   remove = (fromIndex) => {
     const node = this.nodes[fromIndex]
     if (node) {
       let before = this.nodes[fromIndex - 1]
       let after = this.nodes[fromIndex + 1]
       before = updateNext(before, after.value)
-      after = updatePrev(after, before.value)
-      this.nodes.splice(fromIndex - 1, 3, before, after)
+      after = updatePrev(after, before ? before.value : null)
+      before = this.setIfPresent(fromIndex - 1, before)
+      after = this.setIfPresent(fromIndex + 1, after)
+      this.nodes.splice(fromIndex, 1)
       return node
     }
   }
@@ -74,7 +82,6 @@ export class DLL {
     node = updatePrev(node, before ? before.value : null)
     after = updatePrev(after, value)
     this.spliceNewNodes(index, before, node, after)
-
   }
 
   move = (fromIndex, toIndex) => {
