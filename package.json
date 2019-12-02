@@ -1,6 +1,6 @@
 {
   "name": "jex-dll",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/index.js",
   "description": "a doubly linked list",
   "scripts": {
