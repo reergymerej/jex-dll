@@ -2,6 +2,8 @@
 
 a doubly-linked list
 
+[![Build Status](https://travis-ci.org/reergymerej/jex-dll.svg?branch=master)](https://travis-ci.org/reergymerej/jex-dll)
+
 ```js
 import DLL from 'jex-dll'
 const list = new DLL()
