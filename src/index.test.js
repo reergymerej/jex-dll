@@ -3,7 +3,12 @@ import DLL from '.'
 describe('dll', () => {
   it('should have pointers to next and prev', () => {
     const list = new DLL()
-    list.push(1)
+    const entity = list.push(1)
+    expect(entity).toEqual({
+      value: 1,
+      next: null,
+      prev: null,
+    })
     expect(list.nodes).toEqual([
       {
         next: null,

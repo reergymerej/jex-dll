@@ -23,11 +23,13 @@ export default class DLL {
     if (prev) {
       prev.next = value
     }
-    this.nodes.push({
+    const newNode = {
       next: null,
       prev: prev ? prev.value : null,
       value,
-    })
+    }
+    this.nodes.push(newNode)
+    return newNode
   }
 
   unshift = (value) => {
